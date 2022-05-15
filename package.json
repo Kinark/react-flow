@@ -4,7 +4,7 @@
   "engines": {
     "node": ">=14"
   },
-  "main": "dist/umd/index.js",
+  "main": "src/index.js",
   "module": "dist/esm/index.js",
   "jsdelivr": "dist/umd/index.js",
   "unpkg": "dist/umd/index.js",
