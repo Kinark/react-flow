@@ -28,7 +28,7 @@
     "url": "https://github.com/wbkd/react-flow.git"
   },
   "scripts": {
-    "prepare": "npm run build",
+    "prepack": "npm run build",
     "build": "rimraf dist && rollup -c --environment NODE_ENV:production && npm run css",
     "build:test": "rimraf dist && rollup -c --environment NODE_ENV:test && npm run css",
     "start": "rollup -w -c",
