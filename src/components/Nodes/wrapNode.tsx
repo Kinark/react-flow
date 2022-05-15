@@ -10,6 +10,7 @@ import useMemoizedMouseHandler from './useMemoizedMouseHandler';
 
 const selector = (s: ReactFlowState) => ({
   addSelectedNodes: s.addSelectedNodes,
+  unselectNodes: s.unselectNodes,
   updateNodePosition: s.updateNodePosition,
   unselectNodesAndEdges: s.unselectNodesAndEdges,
   updateNodeDimensions: s.updateNodeDimensions,
@@ -54,7 +55,7 @@ export default (NodeComponent: ComponentType<NodeProps>) => {
     allowPanOverNodes,
   }: WrapNodeProps) => {
     const store = useStoreApi();
-    const { addSelectedNodes, unselectNodesAndEdges, updateNodePosition, updateNodeDimensions } = useStore(
+    const { addSelectedNodes, unselectNodes, unselectNodesAndEdges, updateNodePosition, updateNodeDimensions } = useStore(
       selector,
       shallow
     );
@@ -89,9 +90,11 @@ export default (NodeComponent: ComponentType<NodeProps>) => {
         if (!isDraggable) {
           if (isSelectable) {
             store.setState({ nodesSelectionActive: false });
-
+            const { multiSelectionActive } = store.getState();
             if (!selected) {
               addSelectedNodes([id]);
+            } else if (multiSelectionActive) {
+              unselectNodes([id]);            
             }
           }
 
@@ -106,14 +109,16 @@ export default (NodeComponent: ComponentType<NodeProps>) => {
 
     const onDragStart = useCallback(
       (event: DraggableEvent) => {
+        const { multiSelectionActive } = store.getState();
         if (selectNodesOnDrag && isSelectable) {
           store.setState({ nodesSelectionActive: false });
 
           if (!selected) {
             addSelectedNodes([id]);
+          } else if (multiSelectionActive) {
+            unselectNodes([id]);
           }
         } else if (!selectNodesOnDrag && !selected && isSelectable) {
-          const { multiSelectionActive } = store.getState();
           if (multiSelectionActive) {
             addSelectedNodes([id]);
           } else {

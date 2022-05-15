@@ -126,6 +126,21 @@ const createStore = () =>
         }
       }
     },
+    unselectNodes: (selectedNodeIds: string[]) => {
+      const { onNodesChange, nodeInternals, hasDefaultNodes } = get();
+
+      const changedNodes: NodeSelectionChange[] = selectedNodeIds.map((nodeId) =>
+        createSelectionChange(nodeId, false)
+      ) as NodeSelectionChange[];
+
+      if (changedNodes.length) {
+        if (hasDefaultNodes) {
+          set({ nodeInternals: handleControlledNodeSelectionChange(changedNodes, nodeInternals) });
+        }
+
+        onNodesChange?.(changedNodes);
+      }
+    },
     // @TODO: can we unify addSelectedNodes and addSelectedEdges somehow?
     addSelectedNodes: (selectedNodeIds: string[]) => {
       const {
