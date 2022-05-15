@@ -25,7 +25,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/wbkd/react-flow.git"
+    "url": "https://github.com/Kinark/react-flow.git"
   },
   "scripts": {
     "build": "rimraf dist && rollup -c --environment NODE_ENV:production && npm run css",
