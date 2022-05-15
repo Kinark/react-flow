@@ -4,7 +4,7 @@
   "engines": {
     "node": ">=14"
   },
-  "main": "src/index.js",
+  "main": "dist/umd/index.js",
   "module": "dist/esm/index.js",
   "jsdelivr": "dist/umd/index.js",
   "unpkg": "dist/umd/index.js",
@@ -28,7 +28,7 @@
     "url": "https://github.com/wbkd/react-flow.git"
   },
   "scripts": {
-    "prepack": "npm run build",
+    "postinstall": "npm run build",
     "build": "rimraf dist && rollup -c --environment NODE_ENV:production && npm run css",
     "build:test": "rimraf dist && rollup -c --environment NODE_ENV:test && npm run css",
     "start": "rollup -w -c",
