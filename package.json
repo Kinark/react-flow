@@ -1,5 +1,5 @@
 {
-  "name": "react-flow-renderer",
+  "name": "@kinark/react-flow-renderer",
   "version": "10.2.2",
   "engines": {
     "node": ">=14"
