@@ -8,7 +8,10 @@ import useOnInitHandler from '../../hooks/useOnInitHandler';
 import { NodeTypesWrapped, EdgeTypesWrapped, ConnectionLineType, KeyCode, ReactFlowProps } from '../../types';
 
 export interface GraphViewProps
-  extends Omit<ReactFlowProps, 'onSelectionChange' | 'nodes' | 'edges' | 'nodeTypes' | 'edgeTypes' | 'selectionKeyCode'> {
+  extends Omit<
+    ReactFlowProps,
+    'onSelectionChange' | 'nodes' | 'edges' | 'nodeTypes' | 'edgeTypes' | 'selectionKeyCode'
+  > {
   nodeTypes: NodeTypesWrapped;
   edgeTypes: EdgeTypesWrapped;
   selectionKeyCode: KeyCode | null | boolean;
@@ -28,6 +31,8 @@ export interface GraphViewProps
 const GraphView = ({
   nodeTypes,
   edgeTypes,
+  nodesPayload,
+  edgesPayload,
   onMove,
   onMoveStart,
   onMoveEnd,
@@ -119,6 +124,7 @@ const GraphView = ({
     >
       <Viewport>
         <EdgeRenderer
+          edgesPayload={edgesPayload}
           edgeTypes={edgeTypes}
           onEdgeClick={onEdgeClick}
           onEdgeDoubleClick={onEdgeDoubleClick}
@@ -139,6 +145,7 @@ const GraphView = ({
           elevateEdgesOnSelect={!!elevateEdgesOnSelect}
         />
         <NodeRenderer
+          nodesPayload={nodesPayload}
           nodeTypes={nodeTypes}
           onNodeClick={onNodeClick}
           onNodeDoubleClick={onNodeDoubleClick}

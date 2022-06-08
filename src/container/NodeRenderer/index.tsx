@@ -6,6 +6,7 @@ import { useStore } from '../../store';
 import { Node, NodeTypesWrapped, Position, ReactFlowState, WrapNodeProps } from '../../types';
 
 interface NodeRendererProps {
+  nodesPayload?: any;
   nodeTypes: NodeTypesWrapped;
   selectNodesOnDrag: boolean;
   onNodeClick?: (event: MouseEvent, element: Node) => void;
@@ -35,8 +36,16 @@ const selector = (s: ReactFlowState) => ({
 });
 
 const NodeRenderer = (props: NodeRendererProps) => {
-  const { scale, nodesDraggable, nodesConnectable, elementsSelectable, updateNodeDimensions, snapGrid, snapToGrid, allowPanOverNodes } =
-    useStore(selector, shallow);
+  const {
+    scale,
+    nodesDraggable,
+    nodesConnectable,
+    elementsSelectable,
+    updateNodeDimensions,
+    snapGrid,
+    snapToGrid,
+    allowPanOverNodes,
+  } = useStore(selector, shallow);
   const nodes = useVisibleNodes(props.onlyRenderVisibleElements);
   const resizeObserverRef = useRef<ResizeObserver>();
 
@@ -87,6 +96,7 @@ const NodeRenderer = (props: NodeRendererProps) => {
 
         return (
           <NodeComponent
+            nodesPayload={props.nodesPayload}
             key={node.id}
             id={node.id}
             allowPanOverNodes={allowPanOverNodes}

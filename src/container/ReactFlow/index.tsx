@@ -57,6 +57,8 @@ const ReactFlow = forwardRef<ReactFlowRefType, ReactFlowProps>(
     {
       nodes,
       edges,
+      nodesPayload,
+      edgesPayload,
       defaultNodes,
       defaultEdges,
       className,
@@ -153,13 +155,15 @@ const ReactFlow = forwardRef<ReactFlowRefType, ReactFlowProps>(
     const reactFlowClasses = cc(['react-flow', className]);
 
     useEffect(() => {
-      setAllowPanOverNodes(allowPanOverNodes && panOnDrag)
-    }, [allowPanOverNodes, panOnDrag])
+      setAllowPanOverNodes(allowPanOverNodes && panOnDrag);
+    }, [allowPanOverNodes, panOnDrag]);
 
     return (
       <div {...rest} ref={ref} className={reactFlowClasses}>
         <Wrapper>
           <GraphView
+            nodesPayload={nodesPayload}
+            edgesPayload={edgesPayload}
             onInit={onInit}
             onMove={onMove}
             onMoveStart={onMoveStart}

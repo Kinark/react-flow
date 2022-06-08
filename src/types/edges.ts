@@ -88,6 +88,7 @@ export interface WrapEdgeProps<T = any> {
   className?: string;
   type: string;
   data?: T;
+  edgesPayload?: any;
   allowPanOverNodes: boolean;
   onClick?: EdgeMouseHandler;
   onEdgeDoubleClick?: EdgeMouseHandler;

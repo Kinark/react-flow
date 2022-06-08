@@ -42,6 +42,8 @@ import { HandleType } from './handles';
 export interface ReactFlowProps extends HTMLAttributes<HTMLDivElement> {
   nodes?: Node[];
   edges?: Edge[];
+  nodesPayload?: any;
+  edgesPayload?: any;
   defaultNodes?: Node[];
   defaultEdges?: Edge[];
   defaultEdgeOptions?: DefaultEdgeOptions;

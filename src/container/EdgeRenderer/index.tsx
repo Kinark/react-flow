@@ -21,6 +21,7 @@ import useVisibleEdges from '../../hooks/useVisibleEdges';
 
 interface EdgeRendererProps {
   edgeTypes: EdgeTypesWrapped;
+  edgesPayload?: any;
   connectionLineType: ConnectionLineType;
   connectionLineStyle?: CSSProperties;
   connectionLineComponent?: ConnectionLineComponent;
@@ -140,6 +141,7 @@ const EdgeRenderer = (props: EdgeRendererProps) => {
 
               return (
                 <EdgeComponent
+                  edgesPayload={props.edgesPayload}
                   allowPanOverNodes={allowPanOverNodes}
                   key={edge.id}
                   id={edge.id}
