@@ -18,6 +18,7 @@ const selector = (s: ReactFlowState) => ({
 
 export default (NodeComponent: ComponentType<NodeProps>) => {
   const NodeWrapper = ({
+    nodesPayload,
     id,
     type,
     data,
@@ -55,10 +56,8 @@ export default (NodeComponent: ComponentType<NodeProps>) => {
     allowPanOverNodes,
   }: WrapNodeProps) => {
     const store = useStoreApi();
-    const { addSelectedNodes, unselectNodes, unselectNodesAndEdges, updateNodePosition, updateNodeDimensions } = useStore(
-      selector,
-      shallow
-    );
+    const { addSelectedNodes, unselectNodes, unselectNodesAndEdges, updateNodePosition, updateNodeDimensions } =
+      useStore(selector, shallow);
     const nodeElement = useRef<HTMLDivElement>(null);
     const prevSourcePosition = useRef(sourcePosition);
     const prevTargetPosition = useRef(targetPosition);
@@ -94,7 +93,7 @@ export default (NodeComponent: ComponentType<NodeProps>) => {
             if (!selected) {
               addSelectedNodes([id]);
             } else if (multiSelectionActive) {
-              unselectNodes([id]);            
+              unselectNodes([id]);
             }
           }
 
@@ -265,6 +264,7 @@ export default (NodeComponent: ComponentType<NodeProps>) => {
         >
           <Provider value={id}>
             <NodeComponent
+              nodesPayload={nodesPayload}
               id={id}
               data={data}
               type={type}
@@ -287,5 +287,5 @@ export default (NodeComponent: ComponentType<NodeProps>) => {
   NodeWrapper.displayName = 'NodeWrapper';
 
   return memo(NodeWrapper);
-  memo
+  memo;
 };

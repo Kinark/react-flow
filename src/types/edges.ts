@@ -38,6 +38,7 @@ export type DefaultEdgeOptions = Omit<
 
 // props that get passed to a custom edge
 export interface EdgeProps<T = any> {
+  edgesPayload?: any;
   id: string;
   source: string;
   target: string;

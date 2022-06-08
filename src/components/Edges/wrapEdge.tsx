@@ -15,6 +15,7 @@ const selector = (s: ReactFlowState) => ({
 
 export default (EdgeComponent: ComponentType<EdgeProps>) => {
   const EdgeWrapper = ({
+    edgesPayload,
     id,
     className,
     type,
@@ -212,6 +213,7 @@ export default (EdgeComponent: ComponentType<EdgeProps>) => {
         onMouseLeave={onEdgeMouseLeave}
       >
         <EdgeComponent
+          edgesPayload={edgesPayload}
           id={id}
           source={source}
           target={target}

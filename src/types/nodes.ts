@@ -41,6 +41,7 @@ export interface NodeProps<T = any> {
   type: string;
   data: T;
   selected: boolean;
+  nodesPayload?: any;
   isConnectable: boolean;
   xPos: number;
   yPos: number;
